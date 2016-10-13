@@ -1,12 +1,11 @@
-"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var core_1 = require('@angular/core');
-var dialog_ref_1 = require('../models/dialog-ref');
-var UnsupportedDropInError = (function (_super) {
+import { ReflectiveInjector } from '@angular/core';
+import { DialogRef } from '../models/dialog-ref';
+export var UnsupportedDropInError = (function (_super) {
     __extends(UnsupportedDropInError, _super);
     function UnsupportedDropInError(dropInName) {
         _super.call(this);
@@ -14,8 +13,7 @@ var UnsupportedDropInError = (function (_super) {
     }
     return UnsupportedDropInError;
 }(Error));
-exports.UnsupportedDropInError = UnsupportedDropInError;
-var Modal = (function () {
+export var Modal = (function () {
     function Modal(overlay) {
         this.overlay = overlay;
     }
@@ -50,11 +48,11 @@ var Modal = (function () {
         }
     };
     Modal.prototype.createBackdrop = function (dialogRef, BackdropComponent) {
-        var b = core_1.ReflectiveInjector.resolve([{ provide: dialog_ref_1.DialogRef, useValue: dialogRef }]);
+        var b = ReflectiveInjector.resolve([{ provide: DialogRef, useValue: dialogRef }]);
         return dialogRef.overlayRef.instance.addComponent(BackdropComponent, b);
     };
     Modal.prototype.createContainer = function (dialogRef, ContainerComponent, content, bindings) {
-        var b = core_1.ReflectiveInjector.resolve([{ provide: dialog_ref_1.DialogRef, useValue: dialogRef }])
+        var b = ReflectiveInjector.resolve([{ provide: DialogRef, useValue: dialogRef }])
             .concat(bindings || []);
         var nodes = dialogRef.overlayRef.instance.getProjectables(content, b);
         return dialogRef.overlayRef.instance.addComponent(ContainerComponent, b, nodes);
@@ -69,7 +67,7 @@ var Modal = (function () {
      * @deprecated use createBackdrop and createContainer instead
      */
     Modal.prototype.createModal = function (dialogRef, backdrop, container) {
-        var b = core_1.ReflectiveInjector.resolve([{ provide: dialog_ref_1.DialogRef, useValue: dialogRef }]);
+        var b = ReflectiveInjector.resolve([{ provide: DialogRef, useValue: dialogRef }]);
         return {
             backdropRef: dialogRef.overlayRef.instance.addComponent(backdrop, b),
             containerRef: dialogRef.overlayRef.instance.addComponent(container, b)
@@ -77,5 +75,4 @@ var Modal = (function () {
     };
     return Modal;
 }());
-exports.Modal = Modal;
 //# sourceMappingURL=modal.js.map

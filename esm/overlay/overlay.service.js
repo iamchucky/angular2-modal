@@ -1,11 +1,10 @@
-"use strict";
-var core_1 = require('@angular/core');
-var tokens_1 = require('../models/tokens');
-var dialog_ref_stack_1 = require('../models/dialog-ref-stack');
-var vc_ref_store_1 = require('../models/vc-ref-store');
-var dialog_ref_1 = require('../models/dialog-ref');
-var _stack = new dialog_ref_stack_1.DialogRefStack();
-var Overlay = (function () {
+import { Injectable } from '@angular/core';
+import { OverlayRenderer } from '../models/tokens';
+import { DialogRefStack } from '../models/dialog-ref-stack';
+import { vcRefStore } from '../models/vc-ref-store';
+import { DialogRef } from '../models/dialog-ref';
+var _stack = new DialogRefStack();
+export var Overlay = (function () {
     function Overlay(_modalRenderer) {
         this._modalRenderer = _modalRenderer;
     }
@@ -41,7 +40,7 @@ var Overlay = (function () {
         var _this = this;
         var viewContainer = config.viewContainer, containers = [];
         if (typeof viewContainer === 'string') {
-            containers = vc_ref_store_1.vcRefStore.getVCRef(viewContainer);
+            containers = vcRefStore.getVCRef(viewContainer);
         }
         else if (Array.isArray(viewContainer)) {
             containers = viewContainer;
@@ -64,7 +63,7 @@ var Overlay = (function () {
         if (config.context) {
             config.context.normalize();
         }
-        var dialog = new dialog_ref_1.DialogRef(this, config.context || {});
+        var dialog = new DialogRef(this, config.context || {});
         dialog.inElement = config.context && !!config.context.inElement;
         var cmpRef = renderer.render(dialog, vcRef, config.injector);
         Object.defineProperty(dialog, 'overlayRef', { value: cmpRef });
@@ -72,13 +71,12 @@ var Overlay = (function () {
         return dialog;
     };
     Overlay.decorators = [
-        { type: core_1.Injectable },
+        { type: Injectable },
     ];
     /** @nocollapse */
     Overlay.ctorParameters = [
-        { type: tokens_1.OverlayRenderer, },
+        { type: OverlayRenderer, },
     ];
     return Overlay;
 }());
-exports.Overlay = Overlay;
 //# sourceMappingURL=overlay.service.js.map

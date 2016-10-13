@@ -1,7 +1,6 @@
-"use strict";
-var Subject_1 = require('rxjs/Subject');
-require('rxjs/add/operator/filter');
-var createComponent_1 = require('../framework/createComponent');
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/filter';
+import { createComponent } from '../framework/createComponent';
 var BROWSER_PREFIX = ['webkit', 'moz', 'MS', 'o', ''];
 function register(eventName, element, cb) {
     BROWSER_PREFIX.forEach(function (p) {
@@ -25,7 +24,7 @@ function register(eventName, element, cb) {
  * Capabilities: Add/Remove styls, Add/Remove classes, listen to animation/transition end event,
  * add components
  */
-var BaseDynamicComponent = (function () {
+export var BaseDynamicComponent = (function () {
     function BaseDynamicComponent(el, renderer) {
         this.el = el;
         this.renderer = renderer;
@@ -34,7 +33,7 @@ var BaseDynamicComponent = (function () {
         var _this = this;
         if (this.animationEnd)
             return;
-        this.animationEnd = new Subject_1.Subject();
+        this.animationEnd = new Subject();
         this.animationEnd$ = this.animationEnd.asObservable();
         register('TransitionEnd', this.el.nativeElement, function (e) { return _this.onEnd(e); });
         register('AnimationEnd', this.el.nativeElement, function (e) { return _this.onEnd(e); });
@@ -87,7 +86,7 @@ var BaseDynamicComponent = (function () {
      * @returns {Promise<ComponentRef<any>>}
      */
     BaseDynamicComponent.prototype._addComponent = function (instructions) {
-        var cmpRef = createComponent_1.createComponent(instructions);
+        var cmpRef = createComponent(instructions);
         cmpRef.changeDetectorRef.detectChanges();
         return cmpRef;
     };
@@ -98,5 +97,4 @@ var BaseDynamicComponent = (function () {
     };
     return BaseDynamicComponent;
 }());
-exports.BaseDynamicComponent = BaseDynamicComponent;
 //# sourceMappingURL=base-dynamic-component.js.map

@@ -4,34 +4,33 @@
  * @link https://github.com/shlomiassaf/angular2-modal
  * @license MIT
  */
-"use strict";
-var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var angular2_modal_1 = require('../../../../components/angular2-modal');
-var modal_1 = require('./modal');
-var dialog_form_modal_1 = require('./dialog-form-modal');
-exports.providers = [
-    { provide: angular2_modal_1.Modal, useClass: modal_1.Modal },
-    { provide: modal_1.Modal, useClass: modal_1.Modal }
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ModalModule, Modal as BaseModal } from "angular2-modal";
+import { Modal } from './modal';
+import { DialogFormModal, FormDropIn, VEXDialogButtons } from './dialog-form-modal';
+export var providers = [
+    { provide: BaseModal, useClass: Modal },
+    { provide: Modal, useClass: Modal }
 ];
-var VexModalModule = (function () {
+export var VexModalModule = (function () {
     function VexModalModule() {
     }
     VexModalModule.getProviders = function () {
-        return exports.providers;
+        return providers;
     };
     VexModalModule.decorators = [
-        { type: core_1.NgModule, args: [{
-                    imports: [angular2_modal_1.ModalModule, common_1.CommonModule],
+        { type: NgModule, args: [{
+                    imports: [ModalModule, CommonModule],
                     declarations: [
-                        dialog_form_modal_1.VEXDialogButtons,
-                        dialog_form_modal_1.FormDropIn,
-                        dialog_form_modal_1.DialogFormModal
+                        VEXDialogButtons,
+                        FormDropIn,
+                        DialogFormModal
                     ],
-                    providers: exports.providers,
+                    providers: providers,
                     entryComponents: [
-                        dialog_form_modal_1.DialogFormModal,
-                        dialog_form_modal_1.FormDropIn
+                        DialogFormModal,
+                        FormDropIn
                     ]
                 },] },
     ];
@@ -39,5 +38,4 @@ var VexModalModule = (function () {
     VexModalModule.ctorParameters = [];
     return VexModalModule;
 }());
-exports.VexModalModule = VexModalModule;
 //# sourceMappingURL=vex.module.js.map

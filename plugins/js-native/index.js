@@ -4,17 +4,9 @@
  * @link https://github.com/shlomiassaf/angular2-modal
  * @license MIT
  */
-"use strict";
-var modal_1 = require('./modal');
-exports.Modal = modal_1.Modal;
-var modal_context_1 = require('./modal-context');
-exports.JSNativeModalContext = modal_context_1.JSNativeModalContext;
-exports.JSNativeModalContextBuilder = modal_context_1.JSNativeModalContextBuilder;
-var js_native_modal_renderer_1 = require('./js-native-modal-renderer');
-exports.JSNativeModalRenderer = js_native_modal_renderer_1.JSNativeModalRenderer;
-var js_native_preset_1 = require('./presets/js-native-preset');
-exports.JSNativePresetBuilder = js_native_preset_1.JSNativePresetBuilder;
-var js_native_module_1 = require('./js-native.module');
-exports.JSNativeModalModule = js_native_module_1.JSNativeModalModule;
-exports.providers = js_native_module_1.providers;
+export { Modal } from './modal';
+export { JSNativeModalContext, JSNativeModalContextBuilder } from './modal-context';
+export { JSNativeModalRenderer } from './js-native-modal-renderer';
+export { JSNativePresetBuilder } from './presets/js-native-preset';
+export { JSNativeModalModule, providers } from './js-native.module';
 //# sourceMappingURL=index.js.map

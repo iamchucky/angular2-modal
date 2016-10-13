@@ -1,9 +1,8 @@
-"use strict";
 var BASKET_GROUP = {};
 /**
  * A dumb stack implementation over an array.
  */
-var DialogRefStack = (function () {
+export var DialogRefStack = (function () {
     function DialogRefStack() {
         this._stack = [];
         this._stackMap = new Map();
@@ -80,5 +79,4 @@ var DialogRefStack = (function () {
     };
     return DialogRefStack;
 }());
-exports.DialogRefStack = DialogRefStack;
 //# sourceMappingURL=dialog-ref-stack.js.map

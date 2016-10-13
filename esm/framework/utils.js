@@ -1,11 +1,10 @@
-"use strict";
 /**
  * Simple object extend
  * @param m1
  * @param m2
  * @returns {{}}
  */
-function extend(m1, m2) {
+export function extend(m1, m2) {
     var m = {};
     for (var attr in m1) {
         if (m1.hasOwnProperty(attr)) {
@@ -19,29 +18,26 @@ function extend(m1, m2) {
     }
     return m;
 }
-exports.extend = extend;
 /**
  * Simple, not optimized, array union of unique values.
  * @param arr1
  * @param arr2
  * @returns {T[]|any[]|any[][]|any[]}
  */
-function arrayUnion(arr1, arr2) {
+export function arrayUnion(arr1, arr2) {
     return arr1
         .concat(arr2.filter(function (v) { return arr1.indexOf(v) === -1; }));
 }
-exports.arrayUnion = arrayUnion;
 /**
  * Returns true if the config supports a given key.
  * @param key
  * @returns {boolean}
  */
-function supportsKey(keyCode, config) {
+export function supportsKey(keyCode, config) {
     if (!Array.isArray(config))
         return config === null ? false : true;
     return config.indexOf(keyCode) > -1;
 }
-exports.supportsKey = supportsKey;
 /**
  * Given an object representing a key/value map of css properties, returns a valid css string
  * representing the object.
@@ -59,7 +55,7 @@ exports.supportsKey = supportsKey;
  * @param obj
  * @returns {string}
  */
-function toStyleString(obj) {
+export function toStyleString(obj) {
     return Object.getOwnPropertyNames(obj)
         .map(function (k) { return (k + ":" + obj[k]); })
         .join(';');
@@ -68,8 +64,7 @@ function toStyleString(obj) {
     //     .replace(/,/g, ';')
     //     .replace(/"/g, '');
 }
-exports.toStyleString = toStyleString;
-var PromiseCompleter = (function () {
+export var PromiseCompleter = (function () {
     function PromiseCompleter() {
         var _this = this;
         this.promise = new Promise(function (res, rej) {
@@ -79,7 +74,5 @@ var PromiseCompleter = (function () {
     }
     return PromiseCompleter;
 }());
-exports.PromiseCompleter = PromiseCompleter;
-function noop() { }
-exports.noop = noop;
+export function noop() { }
 //# sourceMappingURL=utils.js.map

@@ -1,17 +1,16 @@
-"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var core_1 = require('@angular/core');
-var utils_1 = require('../framework/utils');
-var dialog_ref_1 = require('../models/dialog-ref');
-var index_1 = require('../components/index');
+import { Component, ElementRef, ViewChild, ViewContainerRef, ViewEncapsulation, Renderer, TemplateRef } from '@angular/core';
+import { PromiseCompleter, supportsKey } from '../framework/utils';
+import { DialogRef } from '../models/dialog-ref';
+import { BaseDynamicComponent } from '../components/index';
 /**
  * Represents the modal overlay.
  */
-var ModalOverlay = (function (_super) {
+export var ModalOverlay = (function (_super) {
     __extends(ModalOverlay, _super);
     function ModalOverlay(dialogRef, vcr, el, renderer) {
         _super.call(this, el, renderer);
@@ -27,7 +26,7 @@ var ModalOverlay = (function (_super) {
         if (typeof content === 'string') {
             nodes = [[this.renderer.createText(null, "" + content)]];
         }
-        else if (content instanceof core_1.TemplateRef) {
+        else if (content instanceof TemplateRef) {
             nodes = [
                 this.dialogRef.overlay.defaultViewContainer
                     .createEmbeddedView(content, { dialogRef: this.dialogRef }).rootNodes
@@ -128,7 +127,7 @@ var ModalOverlay = (function (_super) {
      * @returns {Promise<void>}
      */
     ModalOverlay.prototype.canDestroy = function () {
-        var completer = new utils_1.PromiseCompleter();
+        var completer = new PromiseCompleter();
         if (!Array.isArray(this.beforeDestroyHandlers)) {
             completer.resolve();
         }
@@ -168,7 +167,7 @@ var ModalOverlay = (function (_super) {
         // check that this modal is the last in the stack.
         if (!this.dialogRef.overlay.isTopMost(this.dialogRef))
             return;
-        if (utils_1.supportsKey(event.keyCode, this.dialogRef.context.keyboard)) {
+        if (supportsKey(event.keyCode, this.dialogRef.context.keyboard)) {
             this.dialogRef.dismiss();
         }
     };
@@ -183,27 +182,26 @@ var ModalOverlay = (function (_super) {
         }
     };
     ModalOverlay.decorators = [
-        { type: core_1.Component, args: [{
+        { type: Component, args: [{
                     selector: 'modal-overlay',
                     host: {
                         '(body:keydown)': 'documentKeypress($event)'
                     },
-                    encapsulation: core_1.ViewEncapsulation.None,
+                    encapsulation: ViewEncapsulation.None,
                     template: "<template #innerView></template>\n<template #template let-ctx>\n    <template [swapCmp]=\"ctx.component\" [swapCmpBindings]=\"ctx.bindings\" [swapCmpProjectables]=\"ctx.projectableNodes\"></template>\n</template>\n"
                 },] },
     ];
     /** @nocollapse */
     ModalOverlay.ctorParameters = [
-        { type: dialog_ref_1.DialogRef, },
-        { type: core_1.ViewContainerRef, },
-        { type: core_1.ElementRef, },
-        { type: core_1.Renderer, },
+        { type: DialogRef, },
+        { type: ViewContainerRef, },
+        { type: ElementRef, },
+        { type: Renderer, },
     ];
     ModalOverlay.propDecorators = {
-        'innerVcr': [{ type: core_1.ViewChild, args: ['innerView', { read: core_1.ViewContainerRef },] },],
-        'template': [{ type: core_1.ViewChild, args: ['template',] },],
+        'innerVcr': [{ type: ViewChild, args: ['innerView', { read: ViewContainerRef },] },],
+        'template': [{ type: ViewChild, args: ['template',] },],
     };
     return ModalOverlay;
-}(index_1.BaseDynamicComponent));
-exports.ModalOverlay = ModalOverlay;
+}(BaseDynamicComponent));
 //# sourceMappingURL=overlay.component.js.map

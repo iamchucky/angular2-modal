@@ -4,23 +4,22 @@
  * @link https://github.com/shlomiassaf/angular2-modal
  * @license MIT
  */
-"use strict";
-var core_1 = require('@angular/core');
-var angular2_modal_1 = require('../../../../components/angular2-modal');
-var JSNativeModalRenderer = (function () {
+import { Injectable } from '@angular/core';
+import { DROP_IN_TYPE } from "angular2-modal";
+export var JSNativeModalRenderer = (function () {
     function JSNativeModalRenderer() {
     }
     JSNativeModalRenderer.prototype.render = function (dialog, vcRef) {
         var result;
         switch (dialog.context.dialogType) {
-            case angular2_modal_1.DROP_IN_TYPE.alert:
+            case DROP_IN_TYPE.alert:
                 window.alert(dialog.context.message);
                 result = true;
                 break;
-            case angular2_modal_1.DROP_IN_TYPE.prompt:
+            case DROP_IN_TYPE.prompt:
                 result = window.prompt(dialog.context.message, dialog.context.promptDefault);
                 break;
-            case angular2_modal_1.DROP_IN_TYPE.confirm:
+            case DROP_IN_TYPE.confirm:
                 result = window.confirm(dialog.context.message);
                 break;
         }
@@ -37,11 +36,10 @@ var JSNativeModalRenderer = (function () {
         return {};
     };
     JSNativeModalRenderer.decorators = [
-        { type: core_1.Injectable },
+        { type: Injectable },
     ];
     /** @nocollapse */
     JSNativeModalRenderer.ctorParameters = [];
     return JSNativeModalRenderer;
 }());
-exports.JSNativeModalRenderer = JSNativeModalRenderer;
 //# sourceMappingURL=js-native-modal-renderer.js.map

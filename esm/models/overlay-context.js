@@ -1,13 +1,12 @@
-"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var core_1 = require('@angular/core');
-var fluent_assign_1 = require('./../framework/fluent-assign');
-var utils_1 = require('./../framework/utils');
-exports.DEFAULT_VALUES = {
+import { Injectable } from '@angular/core';
+import { FluentAssign } from './../framework/fluent-assign';
+import { extend, arrayUnion } from './../framework/utils';
+export var DEFAULT_VALUES = {
     inElement: false,
     isBlocking: true,
     keyboard: [27],
@@ -20,7 +19,7 @@ var DEFAULT_SETTERS = [
     'isBlocking',
     'keyboard'
 ];
-var OverlayContext = (function () {
+export var OverlayContext = (function () {
     function OverlayContext() {
     }
     OverlayContext.prototype.normalize = function () {
@@ -33,23 +32,22 @@ var OverlayContext = (function () {
             this.keyboard = [this.keyboard];
         }
         else if (!Array.isArray(this.keyboard)) {
-            this.keyboard = exports.DEFAULT_VALUES.keyboard;
+            this.keyboard = DEFAULT_VALUES.keyboard;
         }
     };
     return OverlayContext;
 }());
-exports.OverlayContext = OverlayContext;
 /**
  * A core context builder for a modal window instance, used to define the context upon
  * a modal choose it's behaviour.
  */
-var OverlayContextBuilder = (function (_super) {
+export var OverlayContextBuilder = (function (_super) {
     __extends(OverlayContextBuilder, _super);
     function OverlayContextBuilder(defaultValues, initialSetters, baseType) {
         if (defaultValues === void 0) { defaultValues = undefined; }
         if (initialSetters === void 0) { initialSetters = undefined; }
         if (baseType === void 0) { baseType = undefined; }
-        _super.call(this, utils_1.extend(exports.DEFAULT_VALUES, defaultValues || {}), utils_1.arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || OverlayContext // https://github.com/Microsoft/TypeScript/issues/7234
+        _super.call(this, extend(DEFAULT_VALUES, defaultValues || {}), arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || OverlayContext // https://github.com/Microsoft/TypeScript/issues/7234
         );
     }
     /**
@@ -58,12 +56,12 @@ var OverlayContextBuilder = (function (_super) {
      * @returns OverlayConfig
      */
     OverlayContextBuilder.prototype.toOverlayConfig = function (base) {
-        return utils_1.extend(base || {}, {
+        return extend(base || {}, {
             context: this.toJSON()
         });
     };
     OverlayContextBuilder.decorators = [
-        { type: core_1.Injectable },
+        { type: Injectable },
     ];
     /** @nocollapse */
     OverlayContextBuilder.ctorParameters = [
@@ -72,8 +70,7 @@ var OverlayContextBuilder = (function (_super) {
         null,
     ];
     return OverlayContextBuilder;
-}(fluent_assign_1.FluentAssign));
-exports.OverlayContextBuilder = OverlayContextBuilder;
+}(FluentAssign));
 /**
  * A helper to create an `OverlayConfig` on the fly.
  * Since `OverlayConfig` requires context it means a builder is needed, this process had some boilerplate.
@@ -87,8 +84,7 @@ exports.OverlayContextBuilder = OverlayContextBuilder;
  * @param baseConfig A base configuration that the result will extend
  * @returns {OverlayConfig}
  */
-function overlayConfigFactory(context, baseContextType, baseConfig) {
+export function overlayConfigFactory(context, baseContextType, baseConfig) {
     return new OverlayContextBuilder(context, undefined, baseContextType).toOverlayConfig(baseConfig);
 }
-exports.overlayConfigFactory = overlayConfigFactory;
 //# sourceMappingURL=overlay-context.js.map

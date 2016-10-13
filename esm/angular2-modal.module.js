@@ -1,11 +1,10 @@
-"use strict";
-var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var index_1 = require('./providers/index');
-var tokens_1 = require('./models/tokens');
-var index_2 = require('./components/index');
-var index_3 = require('./overlay/index');
-var ModalModule = (function () {
+import { ANALYZE_FOR_ENTRY_COMPONENTS, NgModule } from '@angular/core';
+import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
+import { DOMOutsideEventPlugin, DOMOverlayRenderer } from './providers/index';
+import { OverlayRenderer } from './models/tokens';
+import { SwapComponentDirective, CSSBackdrop, CSSDialogContainer } from './components/index';
+import { Overlay, ModalOverlay, OverlayDialogBoundary, OverlayTarget, DefaultOverlayTarget } from './overlay/index';
+export var ModalModule = (function () {
     function ModalModule() {
     }
     /**
@@ -19,7 +18,7 @@ var ModalModule = (function () {
         return {
             ngModule: ModalModule,
             providers: [
-                { provide: core_1.ANALYZE_FOR_ENTRY_COMPONENTS, useValue: entryComponents, multi: true }
+                { provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: entryComponents, multi: true }
             ]
         };
     };
@@ -32,36 +31,36 @@ var ModalModule = (function () {
         return {
             ngModule: ModalModule,
             providers: [
-                index_3.Overlay,
-                { provide: tokens_1.OverlayRenderer, useClass: index_1.DOMOverlayRenderer },
-                { provide: platform_browser_1.EVENT_MANAGER_PLUGINS, useClass: index_1.DOMOutsideEventPlugin, multi: true },
-                { provide: core_1.ANALYZE_FOR_ENTRY_COMPONENTS, useValue: entryComponents || [], multi: true }
+                Overlay,
+                { provide: OverlayRenderer, useClass: DOMOverlayRenderer },
+                { provide: EVENT_MANAGER_PLUGINS, useClass: DOMOutsideEventPlugin, multi: true },
+                { provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: entryComponents || [], multi: true }
             ]
         };
     };
     ModalModule.decorators = [
-        { type: core_1.NgModule, args: [{
+        { type: NgModule, args: [{
                     declarations: [
-                        index_3.ModalOverlay,
-                        index_2.SwapComponentDirective,
-                        index_2.CSSBackdrop,
-                        index_2.CSSDialogContainer,
-                        index_3.OverlayDialogBoundary,
-                        index_3.OverlayTarget,
-                        index_3.DefaultOverlayTarget
+                        ModalOverlay,
+                        SwapComponentDirective,
+                        CSSBackdrop,
+                        CSSDialogContainer,
+                        OverlayDialogBoundary,
+                        OverlayTarget,
+                        DefaultOverlayTarget
                     ],
                     exports: [
-                        index_2.CSSBackdrop,
-                        index_2.CSSDialogContainer,
-                        index_2.SwapComponentDirective,
-                        index_3.OverlayDialogBoundary,
-                        index_3.OverlayTarget,
-                        index_3.DefaultOverlayTarget
+                        CSSBackdrop,
+                        CSSDialogContainer,
+                        SwapComponentDirective,
+                        OverlayDialogBoundary,
+                        OverlayTarget,
+                        DefaultOverlayTarget
                     ],
                     entryComponents: [
-                        index_3.ModalOverlay,
-                        index_2.CSSBackdrop,
-                        index_2.CSSDialogContainer
+                        ModalOverlay,
+                        CSSBackdrop,
+                        CSSDialogContainer
                     ]
                 },] },
     ];
@@ -69,5 +68,4 @@ var ModalModule = (function () {
     ModalModule.ctorParameters = [];
     return ModalModule;
 }());
-exports.ModalModule = ModalModule;
 //# sourceMappingURL=angular2-modal.module.js.map

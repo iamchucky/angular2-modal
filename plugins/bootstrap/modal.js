@@ -4,36 +4,35 @@
  * @link https://github.com/shlomiassaf/angular2-modal
  * @license MIT
  */
-"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-require('rxjs/add/operator/combineLatest');
-var core_1 = require('@angular/core');
-var angular2_modal_1 = require('../../../../components/angular2-modal');
-var modal_container_component_1 = require('./modal-container.component');
-var one_button_preset_1 = require('./../bootstrap/presets/one-button-preset');
-var two_button_preset_1 = require('./../bootstrap/presets/two-button-preset');
-var Modal = (function (_super) {
+import 'rxjs/add/operator/combineLatest';
+import { Injectable } from '@angular/core';
+import { Overlay, Modal as Modal_, CSSBackdrop, PromiseCompleter } from "angular2-modal";
+import { BSModalContainer } from './modal-container.component';
+import { OneButtonPresetBuilder } from './../bootstrap/presets/one-button-preset';
+import { TwoButtonPresetBuilder, PromptPresetBuilder } from './../bootstrap/presets/two-button-preset';
+export var Modal = (function (_super) {
     __extends(Modal, _super);
     function Modal(overlay) {
         _super.call(this, overlay);
     }
     Modal.prototype.alert = function () {
-        return new one_button_preset_1.OneButtonPresetBuilder(this, { isBlocking: false });
+        return new OneButtonPresetBuilder(this, { isBlocking: false });
     };
     Modal.prototype.prompt = function () {
-        return new two_button_preset_1.PromptPresetBuilder(this, { isBlocking: true, keyboard: null });
+        return new PromptPresetBuilder(this, { isBlocking: true, keyboard: null });
     };
     Modal.prototype.confirm = function () {
-        return new two_button_preset_1.TwoButtonPresetBuilder(this, { isBlocking: true, keyboard: null });
+        return new TwoButtonPresetBuilder(this, { isBlocking: true, keyboard: null });
     };
     Modal.prototype.create = function (dialogRef, content, bindings) {
         var _this = this;
-        var backdropRef = this.createBackdrop(dialogRef, angular2_modal_1.CSSBackdrop);
-        var containerRef = this.createContainer(dialogRef, modal_container_component_1.BSModalContainer, content, bindings);
+        var backdropRef = this.createBackdrop(dialogRef, CSSBackdrop);
+        var containerRef = this.createContainer(dialogRef, BSModalContainer, content, bindings);
         var overlay = dialogRef.overlayRef.instance;
         var backdrop = backdropRef.instance;
         var container = containerRef.instance;
@@ -52,7 +51,7 @@ var Modal = (function (_super) {
             containerRef.location.nativeElement.focus();
         }
         overlay.beforeDestroy(function () {
-            var completer = new angular2_modal_1.PromiseCompleter();
+            var completer = new PromiseCompleter();
             backdrop.removeClass('in');
             container.removeClass('in');
             backdrop.myAnimationEnd$()
@@ -66,13 +65,12 @@ var Modal = (function (_super) {
         return dialogRef;
     };
     Modal.decorators = [
-        { type: core_1.Injectable },
+        { type: Injectable },
     ];
     /** @nocollapse */
     Modal.ctorParameters = [
-        { type: angular2_modal_1.Overlay, },
+        { type: Overlay, },
     ];
     return Modal;
-}(angular2_modal_1.Modal));
-exports.Modal = Modal;
+}(Modal_));
 //# sourceMappingURL=modal.js.map

@@ -1,16 +1,15 @@
-"use strict";
-var Subject_1 = require('rxjs/Subject');
-var utils_1 = require('../framework/utils');
-var errors_1 = require('../models/errors');
+import { Subject } from 'rxjs/Subject';
+import { PromiseCompleter } from '../framework/utils';
+import { DialogBailOutError } from '../models/errors';
 /**
  * API to an open modal window.
  */
-var DialogRef = (function () {
+export var DialogRef = (function () {
     function DialogRef(overlay, context) {
         this.overlay = overlay;
         this.context = context;
-        this._resultDeferred = new utils_1.PromiseCompleter();
-        this._onDestroy = new Subject_1.Subject();
+        this._resultDeferred = new PromiseCompleter();
+        this._onDestroy = new Subject();
         this.onDestroy = this._onDestroy.asObservable();
     }
     Object.defineProperty(DialogRef.prototype, "result", {
@@ -72,7 +71,7 @@ var DialogRef = (function () {
             this.destroyed = true;
             this._onDestroy.next(null);
             this._onDestroy.complete();
-            this._resultDeferred.reject(new errors_1.DialogBailOutError());
+            this._resultDeferred.reject(new DialogBailOutError());
         }
     };
     DialogRef.prototype.destroy = function () {
@@ -100,5 +99,4 @@ var DialogRef = (function () {
     };
     return DialogRef;
 }());
-exports.DialogRef = DialogRef;
 //# sourceMappingURL=dialog-ref.js.map
