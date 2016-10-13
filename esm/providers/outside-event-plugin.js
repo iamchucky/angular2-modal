@@ -1,7 +1,8 @@
 // heavily inspired by:
 // http://www.bennadel.com/blog/3025-creating-custom-dom-and-host-event-bindings-in-angular-2-beta-6.htm
-import { Injectable } from '@angular/core';
-import { noop } from '../framework/utils';
+"use strict";
+var core_1 = require('@angular/core');
+var utils_1 = require('../framework/utils');
 var eventMap = {
     clickOutside: 'click',
     mousedownOutside: 'mousedown',
@@ -26,11 +27,11 @@ function bubbleNonAncestorHandlerFactory(element, handler) {
         handler(event);
     };
 }
-export var DOMOutsideEventPlugin = (function () {
+var DOMOutsideEventPlugin = (function () {
     function DOMOutsideEventPlugin() {
         // TODO: use DI factory for this.
         if (!document || typeof document.addEventListener !== 'function') {
-            this.addEventListener = noop;
+            this.addEventListener = utils_1.noop;
         }
     }
     DOMOutsideEventPlugin.prototype.supports = function (eventName) {
@@ -69,11 +70,11 @@ export var DOMOutsideEventPlugin = (function () {
     DOMOutsideEventPlugin.prototype.addGlobalEventListener = function (target, eventName, handler) {
         throw 'not supported';
     };
-    DOMOutsideEventPlugin.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    DOMOutsideEventPlugin.ctorParameters = [];
+    DOMOutsideEventPlugin = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], DOMOutsideEventPlugin);
     return DOMOutsideEventPlugin;
 }());
+exports.DOMOutsideEventPlugin = DOMOutsideEventPlugin;
 //# sourceMappingURL=outside-event-plugin.js.map

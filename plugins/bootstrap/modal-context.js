@@ -1,15 +1,5 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-import { ModalOpenContext, ModalOpenContextBuilder, extend, arrayUnion } from "angular2-modal";
+"use strict";
+var angular2_modal_1 = require('../../../../components/angular2-modal');
 var DEFAULT_VALUES = {
     dialogClass: 'modal-dialog',
     showClose: false
@@ -19,7 +9,7 @@ var DEFAULT_SETTERS = [
     'size',
     'showClose'
 ];
-export var BSModalContext = (function (_super) {
+var BSModalContext = (function (_super) {
     __extends(BSModalContext, _super);
     function BSModalContext() {
         _super.apply(this, arguments);
@@ -31,16 +21,18 @@ export var BSModalContext = (function (_super) {
         _super.prototype.normalize.call(this);
     };
     return BSModalContext;
-}(ModalOpenContext));
-export var BSModalContextBuilder = (function (_super) {
+}(angular2_modal_1.ModalOpenContext));
+exports.BSModalContext = BSModalContext;
+var BSModalContextBuilder = (function (_super) {
     __extends(BSModalContextBuilder, _super);
     function BSModalContextBuilder(defaultValues, initialSetters, baseType) {
         if (defaultValues === void 0) { defaultValues = undefined; }
         if (initialSetters === void 0) { initialSetters = undefined; }
         if (baseType === void 0) { baseType = undefined; }
-        _super.call(this, extend(DEFAULT_VALUES, defaultValues || {}), arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || BSModalContext // https://github.com/Microsoft/TypeScript/issues/7234
+        _super.call(this, angular2_modal_1.extend(DEFAULT_VALUES, defaultValues || {}), angular2_modal_1.arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || BSModalContext // https://github.com/Microsoft/TypeScript/issues/7234
         );
     }
     return BSModalContextBuilder;
-}(ModalOpenContextBuilder));
+}(angular2_modal_1.ModalOpenContextBuilder));
+exports.BSModalContextBuilder = BSModalContextBuilder;
 //# sourceMappingURL=modal-context.js.map

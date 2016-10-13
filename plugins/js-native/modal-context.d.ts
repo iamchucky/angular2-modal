@@ -1,10 +1,4 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
-import { DROP_IN_TYPE, ModalOpenContextBuilder, ModalOpenContext, FluentAssignMethod } from 'angular2-modal';
+import { DROP_IN_TYPE, ModalOpenContextBuilder, ModalOpenContext, FluentAssignMethod } from '../../../../components/angular2-modal';
 export declare class JSNativeModalContext extends ModalOpenContext {
     promptDefault: string;
     dialogType: DROP_IN_TYPE;

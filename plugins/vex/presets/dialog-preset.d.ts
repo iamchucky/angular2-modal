@@ -1,11 +1,5 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
 import { Type } from '@angular/core';
-import { FluentAssignMethod } from 'angular2-modal';
+import { FluentAssignMethod } from '../../../../../components/angular2-modal';
 import { VEXModalContext, VEXModalContextBuilder } from '../modal-context';
 import { Modal } from '../modal';
 import { VEXButtonHandler, VEXButtonConfig } from '../dialog-form-modal';

@@ -1,10 +1,4 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
-import { ModalOpenContext, ModalOpenContextBuilder, FluentAssignMethod } from 'angular2-modal';
+import { ModalOpenContext, ModalOpenContextBuilder, FluentAssignMethod } from '../../../../components/angular2-modal';
 export declare type VEXBuiltInThemes = 'default' | 'os' | 'plain' | 'wireframe' | 'flat-attack' | 'top' | 'bottom-right-corner';
 export declare class VEXModalContext extends ModalOpenContext {
     /**

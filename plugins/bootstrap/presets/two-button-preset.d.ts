@@ -1,11 +1,5 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
 import { ResolvedReflectiveProvider } from '@angular/core';
-import { Modal, FluentAssignMethod } from 'angular2-modal';
+import { Modal, FluentAssignMethod } from '../../../../../components/angular2-modal';
 import { MessageModalPresetBuilder } from './message-modal-preset';
 import { OneButtonPreset } from './one-button-preset';
 export interface TwoButtonPreset extends OneButtonPreset {

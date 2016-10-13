@@ -1,15 +1,5 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-import { ModalOpenContext, ModalOpenContextBuilder, privateKey, extend, arrayUnion } from "angular2-modal";
+"use strict";
+var angular2_modal_1 = require('../../../../components/angular2-modal');
 var DEFAULT_VALUES = {
     className: 'default',
     overlayClassName: 'vex-overlay',
@@ -23,7 +13,7 @@ var DEFAULT_SETTERS = [
     'closeClassName',
     'showCloseButton'
 ];
-export var VEXModalContext = (function (_super) {
+var VEXModalContext = (function (_super) {
     __extends(VEXModalContext, _super);
     function VEXModalContext() {
         _super.apply(this, arguments);
@@ -44,14 +34,15 @@ export var VEXModalContext = (function (_super) {
         _super.prototype.normalize.call(this);
     };
     return VEXModalContext;
-}(ModalOpenContext));
-export var VEXModalContextBuilder = (function (_super) {
+}(angular2_modal_1.ModalOpenContext));
+exports.VEXModalContext = VEXModalContext;
+var VEXModalContextBuilder = (function (_super) {
     __extends(VEXModalContextBuilder, _super);
     function VEXModalContextBuilder(defaultValues, initialSetters, baseType) {
         if (defaultValues === void 0) { defaultValues = undefined; }
         if (initialSetters === void 0) { initialSetters = undefined; }
         if (baseType === void 0) { baseType = undefined; }
-        _super.call(this, extend(DEFAULT_VALUES, defaultValues || {}), arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || VEXModalContext // https://github.com/Microsoft/TypeScript/issues/7234
+        _super.call(this, angular2_modal_1.extend(DEFAULT_VALUES, defaultValues || {}), angular2_modal_1.arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || VEXModalContext // https://github.com/Microsoft/TypeScript/issues/7234
         );
     }
     /**
@@ -59,9 +50,10 @@ export var VEXModalContextBuilder = (function (_super) {
      * @aliasFor isBlocking
      */
     VEXModalContextBuilder.prototype.overlayClosesOnClick = function (value) {
-        this[privateKey('isBlocking')] = !value;
+        this[angular2_modal_1.privateKey('isBlocking')] = !value;
         return this;
     };
     return VEXModalContextBuilder;
-}(ModalOpenContextBuilder));
+}(angular2_modal_1.ModalOpenContextBuilder));
+exports.VEXModalContextBuilder = VEXModalContextBuilder;
 //# sourceMappingURL=modal-context.js.map

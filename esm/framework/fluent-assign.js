@@ -1,3 +1,4 @@
+"use strict";
 var PRIVATE_PREFIX = '$$';
 var RESERVED_REGEX = /^(\$\$).*/;
 function validateMethodName(name) {
@@ -18,9 +19,10 @@ function getAssignedPropertyNames(subject) {
         .filter(function (name) { return RESERVED_REGEX.test(name); })
         .map(function (name) { return name.substr(2); });
 }
-export function privateKey(name) {
+function privateKey(name) {
     return PRIVATE_PREFIX + name;
 }
+exports.privateKey = privateKey;
 function objectDefinePropertyValue(obj, propertyName, value) {
     Object.defineProperty(obj, propertyName, {
         configurable: false,
@@ -58,7 +60,7 @@ function applyDefaultValues(instance, defaultValues) {
  * obj.myProp('someValue');
  * obj.myProp('someValue'); // ERROR: Overriding config property 'myProp' is not allowed.
  */
-export function setAssignMethod(obj, propertyName, writeOnce) {
+function setAssignMethod(obj, propertyName, writeOnce) {
     var _this = this;
     if (writeOnce === void 0) { writeOnce = false; }
     validateMethodName.call(obj, propertyName);
@@ -71,6 +73,7 @@ export function setAssignMethod(obj, propertyName, writeOnce) {
         return obj;
     });
 }
+exports.setAssignMethod = setAssignMethod;
 /**
  * Create a function for setting a value that is an alias to an other setter function.
  * @param obj The object to apply the key & setter on.
@@ -97,7 +100,7 @@ export function setAssignMethod(obj, propertyName, writeOnce) {
  * console.log(result); //{ myProp: 'someValue' }
  * result.myPropAlias // someValue
  */
-export function setAssignAlias(obj, propertyName, srcPropertyName, hard) {
+function setAssignAlias(obj, propertyName, srcPropertyName, hard) {
     if (hard === void 0) { hard = false; }
     validateMethodName.call(obj, propertyName);
     objectDefinePropertyValue(obj, propertyName, function (value) {
@@ -113,10 +116,11 @@ export function setAssignAlias(obj, propertyName, srcPropertyName, hard) {
         });
     }
 }
+exports.setAssignAlias = setAssignAlias;
 /**
  * Represent a fluent API factory wrapper for defining FluentAssign instances.
  */
-export var FluentAssignFactory = (function () {
+var FluentAssignFactory = (function () {
     function FluentAssignFactory(fluentAssign) {
         this._fluentAssign =
             fluentAssign instanceof FluentAssign ? fluentAssign : new FluentAssign();
@@ -148,6 +152,7 @@ export var FluentAssignFactory = (function () {
     });
     return FluentAssignFactory;
 }());
+exports.FluentAssignFactory = FluentAssignFactory;
 /**
  * Represent an object where every property is a function representing an assignment function.
  * Calling each function with a value will assign the value to the object and return the object.
@@ -160,7 +165,7 @@ export var FluentAssignFactory = (function () {
  fluent.some('thing').went('wrong').toJSON();
  // { some: 'thing', went: 'wrong' }
  */
-export var FluentAssign = (function () {
+var FluentAssign = (function () {
     /**
      *
      * @param defaultValues An object representing default values for the underlying object.
@@ -223,4 +228,5 @@ export var FluentAssign = (function () {
     };
     return FluentAssign;
 }());
+exports.FluentAssign = FluentAssign;
 //# sourceMappingURL=fluent-assign.js.map

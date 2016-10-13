@@ -1,12 +1,6 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
 import 'rxjs/add/operator/combineLatest';
 import { ResolvedReflectiveProvider as RRP } from '@angular/core';
-import { Maybe, ContainerContent, Overlay, DialogRef, Modal as Modal_ } from 'angular2-modal';
+import { Maybe, ContainerContent, Overlay, DialogRef, Modal as Modal_ } from '../../../../components/angular2-modal';
 import { OneButtonPresetBuilder } from './../bootstrap/presets/one-button-preset';
 import { TwoButtonPresetBuilder, PromptPresetBuilder } from './../bootstrap/presets/two-button-preset';
 export declare class Modal extends Modal_ {

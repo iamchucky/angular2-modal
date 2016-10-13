@@ -1,31 +1,29 @@
-import { Directive, Input, ElementRef, ViewContainerRef } from '@angular/core';
-import { DialogRef } from '../models/dialog-ref';
-import { vcRefStore } from '../models/vc-ref-store';
-import { Overlay } from "./overlay.service";
+"use strict";
+var core_1 = require('@angular/core');
+var dialog_ref_1 = require('../models/dialog-ref');
+var vc_ref_store_1 = require('../models/vc-ref-store');
+var overlay_service_1 = require("./overlay.service");
 /**
  * A directive use to signal the overlay that the host of this directive
  * is a dialog boundary, i.e: over click outside of the element should close the modal
  * (if non blocking)
  */
-export var OverlayDialogBoundary = (function () {
+var OverlayDialogBoundary = (function () {
     function OverlayDialogBoundary(el, dialogRef) {
         if (dialogRef && el.nativeElement) {
             dialogRef.overlayRef.instance.setClickBoundary(el.nativeElement);
         }
     }
-    OverlayDialogBoundary.decorators = [
-        { type: Directive, args: [{
-                    selector: '[overlayDialogBoundary]'
-                },] },
-    ];
-    /** @nocollapse */
-    OverlayDialogBoundary.ctorParameters = [
-        { type: ElementRef, },
-        { type: DialogRef, },
-    ];
+    OverlayDialogBoundary = __decorate([
+        core_1.Directive({
+            selector: '[overlayDialogBoundary]'
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef, dialog_ref_1.DialogRef])
+    ], OverlayDialogBoundary);
     return OverlayDialogBoundary;
 }());
-export var OverlayTarget = (function () {
+exports.OverlayDialogBoundary = OverlayDialogBoundary;
+var OverlayTarget = (function () {
     function OverlayTarget(vcRef) {
         this.vcRef = vcRef;
     }
@@ -33,7 +31,7 @@ export var OverlayTarget = (function () {
         set: function (value) {
             this._targetKey = value;
             if (value) {
-                vcRefStore.setVCRef(value, this.vcRef);
+                vc_ref_store_1.vcRefStore.setVCRef(value, this.vcRef);
             }
         },
         enumerable: true,
@@ -41,25 +39,25 @@ export var OverlayTarget = (function () {
     });
     OverlayTarget.prototype.ngOnDestroy = function () {
         if (this._targetKey) {
-            vcRefStore.delVCRef(this._targetKey, this.vcRef);
+            vc_ref_store_1.vcRefStore.delVCRef(this._targetKey, this.vcRef);
         }
     };
-    OverlayTarget.decorators = [
-        { type: Directive, args: [{
-                    selector: '[overlayTarget]'
-                },] },
-    ];
-    /** @nocollapse */
-    OverlayTarget.ctorParameters = [
-        { type: ViewContainerRef, },
-    ];
-    OverlayTarget.propDecorators = {
-        'targetKey': [{ type: Input, args: ['overlayTarget',] },],
-    };
+    __decorate([
+        core_1.Input('overlayTarget'), 
+        __metadata('design:type', String), 
+        __metadata('design:paramtypes', [String])
+    ], OverlayTarget.prototype, "targetKey", null);
+    OverlayTarget = __decorate([
+        core_1.Directive({
+            selector: '[overlayTarget]'
+        }), 
+        __metadata('design:paramtypes', [core_1.ViewContainerRef])
+    ], OverlayTarget);
     return OverlayTarget;
 }());
+exports.OverlayTarget = OverlayTarget;
 var noop = function () { };
-export var DefaultOverlayTarget = (function () {
+var DefaultOverlayTarget = (function () {
     function DefaultOverlayTarget(overlay, vcRef) {
         this.overlay = overlay;
         overlay.defaultViewContainer = vcRef;
@@ -67,16 +65,13 @@ export var DefaultOverlayTarget = (function () {
     DefaultOverlayTarget.prototype.ngOnDestroy = function () {
         this.overlay.defaultViewContainer = undefined;
     };
-    DefaultOverlayTarget.decorators = [
-        { type: Directive, args: [{
-                    selector: '[defaultOverlayTarget]'
-                },] },
-    ];
-    /** @nocollapse */
-    DefaultOverlayTarget.ctorParameters = [
-        { type: Overlay, },
-        { type: ViewContainerRef, },
-    ];
+    DefaultOverlayTarget = __decorate([
+        core_1.Directive({
+            selector: '[defaultOverlayTarget]'
+        }), 
+        __metadata('design:paramtypes', [overlay_service_1.Overlay, core_1.ViewContainerRef])
+    ], DefaultOverlayTarget);
     return DefaultOverlayTarget;
 }());
+exports.DefaultOverlayTarget = DefaultOverlayTarget;
 //# sourceMappingURL=overlay.directives.js.map

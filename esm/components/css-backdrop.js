@@ -1,14 +1,10 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-import { Component, ElementRef, ViewEncapsulation, Renderer } from '@angular/core';
-import { BaseDynamicComponent } from './base-dynamic-component';
+"use strict";
+var core_1 = require('@angular/core');
+var base_dynamic_component_1 = require('./base-dynamic-component');
 /**
  * Represents the modal backdrop shaped by CSS.
  */
-export var CSSBackdrop = (function (_super) {
+var CSSBackdrop = (function (_super) {
     __extends(CSSBackdrop, _super);
     function CSSBackdrop(el, renderer) {
         var _this = this;
@@ -23,22 +19,19 @@ export var CSSBackdrop = (function (_super) {
         };
         Object.keys(style).forEach(function (k) { return _this.setStyle(k, style[k]); });
     }
-    CSSBackdrop.decorators = [
-        { type: Component, args: [{
-                    selector: 'css-backdrop',
-                    host: {
-                        '[attr.class]': 'cssClass',
-                        '[attr.style]': 'styleStr'
-                    },
-                    encapsulation: ViewEncapsulation.None,
-                    template: ""
-                },] },
-    ];
-    /** @nocollapse */
-    CSSBackdrop.ctorParameters = [
-        { type: ElementRef, },
-        { type: Renderer, },
-    ];
+    CSSBackdrop = __decorate([
+        core_1.Component({
+            selector: 'css-backdrop',
+            host: {
+                '[attr.class]': 'cssClass',
+                '[attr.style]': 'styleStr'
+            },
+            encapsulation: core_1.ViewEncapsulation.None,
+            template: ""
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], CSSBackdrop);
     return CSSBackdrop;
-}(BaseDynamicComponent));
+}(base_dynamic_component_1.BaseDynamicComponent));
+exports.CSSBackdrop = CSSBackdrop;
 //# sourceMappingURL=css-backdrop.js.map

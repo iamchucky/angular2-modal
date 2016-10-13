@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { ComponentRef, TemplateRef, ResolvedReflectiveProvider, Type } from '@angular/core';
 import { Overlay } from '../overlay/index';
 import { Class, Maybe } from '../framework/utils';

@@ -1,3 +1,4 @@
+"use strict";
 var vcRefCollection = {};
 function getVCRef(key) {
     return vcRefCollection[key] ? vcRefCollection[key].slice() : [];
@@ -29,5 +30,5 @@ function delVCRef(key, vcRef) {
  *  delVCRef: (function(string): void)
  *  }}
  */
-export var vcRefStore = { getVCRef: getVCRef, setVCRef: setVCRef, delVCRef: delVCRef };
+exports.vcRefStore = { getVCRef: getVCRef, setVCRef: setVCRef, delVCRef: delVCRef };
 //# sourceMappingURL=vc-ref-store.js.map

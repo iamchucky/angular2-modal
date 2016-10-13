@@ -1,42 +1,33 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-import { privateKey, extend, arrayUnion } from "angular2-modal";
-import { VEXModalContext, VEXModalContextBuilder } from '../modal-context';
-import { DialogFormModal as component } from '../dialog-form-modal';
+"use strict";
+var angular2_modal_1 = require('../../../../../components/angular2-modal');
+var modal_context_1 = require('../modal-context');
+var dialog_form_modal_1 = require('../dialog-form-modal');
 var DEFAULT_SETTERS = [
     'content'
 ];
 /**
  * Data definition
  */
-export var DialogPreset = (function (_super) {
+var DialogPreset = (function (_super) {
     __extends(DialogPreset, _super);
     function DialogPreset() {
         _super.apply(this, arguments);
     }
     return DialogPreset;
-}(VEXModalContext));
+}(modal_context_1.VEXModalContext));
+exports.DialogPreset = DialogPreset;
 /**
  * A Preset representing the configuration needed to open MessageModal.
  * This is an abstract implementation with no concrete behaviour.
  * Use derived implementation.
  */
-export var DialogPresetBuilder = (function (_super) {
+var DialogPresetBuilder = (function (_super) {
     __extends(DialogPresetBuilder, _super);
     function DialogPresetBuilder(modal, defaultValues, initialSetters, baseType) {
         if (defaultValues === void 0) { defaultValues = undefined; }
         if (initialSetters === void 0) { initialSetters = undefined; }
         if (baseType === void 0) { baseType = undefined; }
-        _super.call(this, extend({ modal: modal, component: component, buttons: [], defaultResult: true }, defaultValues || {}), arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || DialogPreset // https://github.com/Microsoft/TypeScript/issues/7234
+        _super.call(this, angular2_modal_1.extend({ modal: modal, component: dialog_form_modal_1.DialogFormModal, buttons: [], defaultResult: true }, defaultValues || {}), angular2_modal_1.arrayUnion(DEFAULT_SETTERS, initialSetters || []), baseType || DialogPreset // https://github.com/Microsoft/TypeScript/issues/7234
         );
     }
     DialogPresetBuilder.prototype.addButton = function (css, caption, onClick) {
@@ -45,7 +36,7 @@ export var DialogPresetBuilder = (function (_super) {
             caption: caption,
             onClick: onClick
         };
-        var key = privateKey('buttons');
+        var key = angular2_modal_1.privateKey('buttons');
         this[key].push(btn);
         return this;
     };
@@ -60,5 +51,6 @@ export var DialogPresetBuilder = (function (_super) {
         return this;
     };
     return DialogPresetBuilder;
-}(VEXModalContextBuilder));
+}(modal_context_1.VEXModalContextBuilder));
+exports.DialogPresetBuilder = DialogPresetBuilder;
 //# sourceMappingURL=dialog-preset.js.map

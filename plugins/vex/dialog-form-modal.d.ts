@@ -1,11 +1,5 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
 import { EventEmitter } from '@angular/core';
-import { DialogRef, ModalComponent } from 'angular2-modal';
+import { DialogRef, ModalComponent } from '../../../../components/angular2-modal';
 import { DialogPreset } from './presets/dialog-preset';
 import { DropInPreset } from './presets/dropin-preset';
 export interface VEXButtonHandler {

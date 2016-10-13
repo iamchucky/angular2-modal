@@ -1,29 +1,24 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
-import { NgModule } from '@angular/core';
-import { Modal as BaseModal } from "angular2-modal";
-import { Modal } from './modal';
-export var providers = [
-    { provide: BaseModal, useClass: Modal },
-    { provide: Modal, useClass: Modal }
+"use strict";
+var core_1 = require('@angular/core');
+var angular2_modal_1 = require('../../../../components/angular2-modal');
+var modal_1 = require('./modal');
+exports.providers = [
+    { provide: angular2_modal_1.Modal, useClass: modal_1.Modal },
+    { provide: modal_1.Modal, useClass: modal_1.Modal }
 ];
-export var JSNativeModalModule = (function () {
+var JSNativeModalModule = (function () {
     function JSNativeModalModule() {
     }
     JSNativeModalModule.getProviders = function () {
-        return providers;
+        return exports.providers;
     };
-    JSNativeModalModule.decorators = [
-        { type: NgModule, args: [{
-                    providers: providers
-                },] },
-    ];
-    /** @nocollapse */
-    JSNativeModalModule.ctorParameters = [];
+    JSNativeModalModule = __decorate([
+        core_1.NgModule({
+            providers: exports.providers
+        }), 
+        __metadata('design:paramtypes', [])
+    ], JSNativeModalModule);
     return JSNativeModalModule;
 }());
+exports.JSNativeModalModule = JSNativeModalModule;
 //# sourceMappingURL=js-native.module.js.map

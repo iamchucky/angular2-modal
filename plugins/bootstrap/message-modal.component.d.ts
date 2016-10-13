@@ -1,10 +1,4 @@
-/**
- * angular2-modal - Angular2 Modal (dialog) window.
- * @version v2.0.1
- * @link https://github.com/shlomiassaf/angular2-modal
- * @license MIT
- */
-import { DialogRef, ModalComponent } from 'angular2-modal';
+import { DialogRef, ModalComponent } from '../../../../components/angular2-modal';
 import { MessageModalPreset } from './presets/message-modal-preset';
 export interface BSMessageModalButtonHandler {
     (cmp: ModalComponent<MessageModalPreset>, $event: MouseEvent): void;
